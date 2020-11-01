@@ -1,4 +1,4 @@
-#shrmem: simple shared memory between processes
+# shrmem: simple shared memory between processes
 
 this implementation offers the following methods to manage shared memory in a simple way:
 
