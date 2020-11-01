@@ -67,7 +67,10 @@ void detach_shrmem(const char* addr){
 
 	mutex_wait(&shrmem_sem);
 	for(i=0; shrmem_vector[i].mem_ptr != addr && i<=shrmem_vector_index; i++);
-	if(glibc_unlikely(i > shrmem_vector_index)) return;
+	if(glibc_unlikely(i > shrmem_vector_index)){
+		mutex_signal(&shrmem_sem);
+		return;
+	}
 
 	for(; i<=shrmem_vector_index; i++)
 		shrmem_vector[i] = shrmem_vector[i+1];
